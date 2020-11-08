@@ -27,7 +27,6 @@
 		end
 		ai:MoveTo(waypoint2.Position)
 		ai.MoveToFinished:Wait(1)
-		print("Finished Buying/Selling at Fenwick")
 	end
 
 	local touche = false
