@@ -1,0 +1,44 @@
+	local PathfindingService = game:GetService("PathfindingService")
+
+	local plr = game.Players.LocalPlayer
+	local char = plr.Character
+	local ai = char:WaitForChild("LocalHumanoid")
+	local hrp = char:WaitForChild("HumanoidRootPart")
+	
+	local p1 = game.Workspace["wcbuywaypoint"]
+	local p3 = game.Workspace["fbuywaypoint"]
+	local p4 = game.Workspace["wcSell"]
+
+	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+	local paper = ReplicatedStorage.RemoteFunctionz.Environment:WaitForChild("RequestCargoPurchase")
+	local apples = ReplicatedStorage.RemoteFunctionz.Environment:WaitForChild("RequestCargoPurchase")
+	local drop = ReplicatedStorage.RemoteFunctionz.Gear:WaitForChild("Crate")
+
+	----------------------------------------------------------------------------------
+
+	local path2 = PathfindingService:CreatePath()
+	path2:ComputeAsync(hrp.Position, p3.Position)
+	local waypoints1 = path2:GetWaypoints()
+
+	for i, waypoint2 in pairs(waypoints1) do
+		if waypoint2.Action == Enum.PathWaypointAction.Jump then
+			ai:ChangeState(Enum.HumanoidStateType.Jumping)
+		end
+		ai:MoveTo(waypoint2.Position)
+		ai.MoveToFinished:Wait(1)
+		print("Finished Buying/Selling at Fenwick")
+	end
+
+	local touche = false
+	p3.Touched:Connect(function(hit)
+		if not touche then
+			touche = true
+			drop:FireServer(false)
+			wait(0.3)
+			apples:FireServer("Apples","Doubloons",0)
+			wait(2)
+      loadstring(game:HttpGet("", true))()
+			touche = false
+		end	
+end)
