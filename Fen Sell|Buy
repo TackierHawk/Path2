@@ -38,7 +38,7 @@
 			wait(0.3)
 			apples:FireServer("Apples","Doubloons",0)
 			wait(2)
-      loadstring(game:HttpGet("", true))()
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/TackierHawk/Path3/main/WC%20Sell", true))()
 			touche = false
 		end	
 end)
