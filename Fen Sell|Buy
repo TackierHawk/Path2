@@ -38,6 +38,7 @@
 			apples:FireServer("Apples","Doubloons",0)
 			wait(0.5)
       loadstring(game:HttpGet("https://raw.githubusercontent.com/TackierHawk/MidPath/main/MidPathPoint", true))()
+      wait(5)
 			touche = false
 		end	
 end)
